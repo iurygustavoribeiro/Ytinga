@@ -4,7 +4,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { SelectDemo } from "@/components/ui/app-select"
+import { SelectCity, SelectDemo, SelectState } from "@/components/ui/app-select"
 
 export function InputFieldValueRegister() {
   return (
@@ -19,7 +19,7 @@ export function InputFieldValueRegister() {
         id="input-field-measure_value"
         type="text"
         placeholder="Insira o valor da medida"
-      />
+      /> {/* tem que botar para a pessoa escolher o fountain_id também */}
       <FieldDescription>
         Certifique-se de registrar um valor decimal coerente com o experimento realizado. Ex: 19,8.
       </FieldDescription>
@@ -28,23 +28,15 @@ export function InputFieldValueRegister() {
   )
 }
 
-export function InputFieldStateCity() {
+export function InputFieldCityState() {
     return (<>
          <Field>
       <FieldLabel htmlFor="input-field-state">Estado</FieldLabel>
-      <Input
-        id="input-field-state"
-        type="text"
-        placeholder="Insira o estado"
-      />
+      <SelectState/>
     </Field>
     <Field>
       <FieldLabel htmlFor="input-field-city">Cidade</FieldLabel>
-      <Input
-        id="input-field-city"
-        type="text"
-        placeholder="Insira a cidade"
-      />
+      <SelectCity/>
     </Field>
   </>
   )

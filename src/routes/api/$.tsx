@@ -18,7 +18,7 @@ export async function handlePost({request}: {request: Request}) {
     })
   }
 
-  const {temperature, turbidity, ph, device_id} = data
+  const {temperature, turbidity, ph} = data
   
   await db.insert(measureTable).values({ temperature, turbidity, ph });
   //await db.insert(deviceTable).values({id: device_id, working: true, createdAt: new Date()});

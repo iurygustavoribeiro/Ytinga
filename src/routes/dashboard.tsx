@@ -9,7 +9,8 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar"
 
-import { CardDemo } from "@/components/ui/app-card"
+import { CardRegister } from "@/components/ui/app-card"
+import { FormCityState, FormMeasureRegister } from '@/components/ui/app-form'
 
 import data from "../components/ui/data.json"
 
@@ -40,9 +41,11 @@ export default function Page() {
               <div className="px-4 lg:px-6">
                 <ChartAreaInteractive />
               </div>
-              <CardDemo />
+              <CardRegister />
               <SectionCards />
               <DataTable data={data} />
+              <FormMeasureRegister/>
+              <FormCityState/>
             </div>
           </div>
         </div>
