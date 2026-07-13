@@ -135,7 +135,7 @@ export function FormCityState() {
       </CardHeader>
       <CardContent>
         <form
-          id="form-tanstack-select"
+          id="form-city-state"
           onSubmit={(e) => {
             e.preventDefault()
             form.handleSubmit()
@@ -254,13 +254,12 @@ export function FormMeasureRegister() {
   useEffect(() => {
     async function loadFountains() {
       try {
-        // TODO: replace this placeholder data with a server API request.
-        const placeholderFountains = [
-          { label: "Fonte A", value: 1 },
-          { label: "Fonte B", value: 2 },
-          { label: "Fonte C", value: 3 },
-        ]
-        setFountains(placeholderFountains)
+        const response = await fetch("/api/fountainsdb")
+        const fountains = await response.json()
+        setFountains(fountains.map((fountain: any) => ({
+          label: fountain.reference,
+          value: fountain.id,
+        })))
       } catch (error) {
         console.error("Erro ao buscar fountains:", error)
         setFountains([])
@@ -306,7 +305,7 @@ export function FormMeasureRegister() {
       </CardHeader>
       <CardContent>
         <form
-          id="form-tanstack-select"
+          id="form-measure-register"
           onSubmit={(e) => {
             e.preventDefault()
             form.handleSubmit()
@@ -420,7 +419,7 @@ export function FormMeasureRegister() {
                             key={state.value}
                             value={String(state.value)}
                           >
-                            {state.label}
+                            {state.value}, {state.label}
                           </SelectItem>
                         ))}
                       </SelectContent>

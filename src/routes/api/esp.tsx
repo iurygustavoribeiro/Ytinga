@@ -29,7 +29,7 @@ export async function handlePost({request}: {request: Request}) {
   })
 }
 
-export const Route = createFileRoute('/api/$')({
+export const Route = createFileRoute('/api/esp')({
   server: {
     handlers: {
       POST: handlePost,
