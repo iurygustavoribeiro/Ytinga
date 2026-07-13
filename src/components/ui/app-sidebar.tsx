@@ -14,7 +14,6 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { LayoutDashboardIcon, ListIcon, ChartBarIcon, FolderIcon, UsersIcon, CameraIcon, FileTextIcon, Settings2Icon, CircleHelpIcon, SearchIcon, DatabaseIcon, FileChartColumnIcon, FileIcon, CommandIcon } from "lucide-react"
-import { CardCityState } from "./app-card"
 
 const data = {
   user: {
@@ -191,7 +190,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <CardCityState/>
         <NavMain items={data.navMain} /> {/* dashboard, quick create, lifecycle*/}
         <NavDocuments items={data.documents} />{/* documents, data lib, reports*/}
         <NavSecondary items={data.navSecondary}  className="mt-auto" /> {/* settings, config, search*/}

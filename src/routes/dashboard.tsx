@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { AppSidebar } from "@/components/ui/app-sidebar"
 import { ChartAreaInteractive } from "@/components/ui/chart-area-interactive"
-import { DataTable } from "@/components/ui/data-table"
+import { DataTable } from "@/components/ui/data-table-app"
 import { SectionCards } from "@/components/ui/section-cards"
 import { SiteHeader } from "@/components/ui/site-header"
 import {
@@ -9,7 +9,6 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar"
 
-import { CardRegister } from "@/components/ui/app-card"
 import { FormCityState, FormMeasureRegister } from '@/components/ui/app-form'
 
 import data from "../components/ui/data.json"
@@ -38,14 +37,13 @@ export default function Page() {
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+              <FormCityState/>
               <div className="px-4 lg:px-6">
                 <ChartAreaInteractive />
               </div>
-              <CardRegister />
               <SectionCards />
               <DataTable data={data} />
               <FormMeasureRegister/>
-              <FormCityState/>
             </div>
           </div>
         </div>
