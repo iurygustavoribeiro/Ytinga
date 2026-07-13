@@ -4,7 +4,6 @@ import { createFileRoute } from '@tanstack/react-router'
 import { eq } from 'drizzle-orm'
 
 export const Route = createFileRoute('/api/fountainsdb')({
-  component: RouteComponent,
   server: {
     handlers: {
       GET: handleGet,
@@ -18,8 +17,4 @@ export async function handleGet() {
     status: 200,
     headers: {"Content-Type": "application/json"}
   })
-}
-
-function RouteComponent() {
-  return <div>Hello "/api/fountainsdb"!</div>
 }
