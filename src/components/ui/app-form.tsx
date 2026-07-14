@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/select"
 import { useEffect, useState } from "react"
 import { Input } from "./input"
+import { queryFountainsByInstitution } from "@/server/fountains"
 
 const formSchemaCityState = z.object({
   state: z.string().min(1, "Por favor, selecione um estado."),
@@ -252,8 +253,7 @@ export function FormMeasureRegister() {
   useEffect(() => {
     async function loadFountains() {
       try {
-        const response = await fetch("/api/fountainsdb")
-        const fountains = await response.json()
+        const fountains = await queryFountainsByInstitution()
         setFountains(fountains.map((fountain: any) => ({
           label: fountain.reference,
           value: fountain.id,

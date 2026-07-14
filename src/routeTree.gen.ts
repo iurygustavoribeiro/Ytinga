@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ApiFountainsdbRouteImport } from './routes/api/fountainsdb'
 import { Route as ApiEspRouteImport } from './routes/api/esp'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
@@ -23,11 +22,6 @@ const DashboardRoute = DashboardRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiFountainsdbRoute = ApiFountainsdbRouteImport.update({
-  id: '/api/fountainsdb',
-  path: '/api/fountainsdb',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiEspRoute = ApiEspRouteImport.update({
@@ -45,14 +39,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/api/esp': typeof ApiEspRoute
-  '/api/fountainsdb': typeof ApiFountainsdbRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/api/esp': typeof ApiEspRoute
-  '/api/fountainsdb': typeof ApiFountainsdbRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
@@ -60,29 +52,20 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/api/esp': typeof ApiEspRoute
-  '/api/fountainsdb': typeof ApiFountainsdbRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    '/' | '/dashboard' | '/api/esp' | '/api/fountainsdb' | '/api/auth/$'
+  fullPaths: '/' | '/dashboard' | '/api/esp' | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/api/esp' | '/api/fountainsdb' | '/api/auth/$'
-  id:
-    | '__root__'
-    | '/'
-    | '/dashboard'
-    | '/api/esp'
-    | '/api/fountainsdb'
-    | '/api/auth/$'
+  to: '/' | '/dashboard' | '/api/esp' | '/api/auth/$'
+  id: '__root__' | '/' | '/dashboard' | '/api/esp' | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
   ApiEspRoute: typeof ApiEspRoute
-  ApiFountainsdbRoute: typeof ApiFountainsdbRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -100,13 +83,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/fountainsdb': {
-      id: '/api/fountainsdb'
-      path: '/api/fountainsdb'
-      fullPath: '/api/fountainsdb'
-      preLoaderRoute: typeof ApiFountainsdbRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/esp': {
@@ -130,7 +106,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
   ApiEspRoute: ApiEspRoute,
-  ApiFountainsdbRoute: ApiFountainsdbRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
