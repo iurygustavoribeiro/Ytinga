@@ -27,7 +27,8 @@ import {
 } from "@/components/ui/select"
 import { useEffect, useState } from "react"
 import { Input } from "./input"
-import { queryFountainsByInstitution } from "@/server/fountains"
+import { queryFountainsByInstitution } from "@/server/query/fountains"
+import { queryCities, queryStates } from "@/lib/IBGE/states-cities"
 
 const formSchemaCityState = z.object({
   state: z.string().min(1, "Por favor, selecione um estado."),
@@ -59,18 +60,13 @@ export function FormCityState() {
   useEffect(() => {
     async function loadStates() { 
       try {
-        const res_states = await fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
-        const data_states = await res_states.json()
-        setStates(data_states.map((state: any) => ({
-          label: state.nome,
-          value: state.sigla,
-        })))
+        const res_states = await queryStates()
+        setStates(res_states)
       } catch (error) {
         console.error("Erro ao buscar estados:", error)
         setStates([])
       }
     }
-
     loadStates()
   }, [])
 
@@ -83,18 +79,13 @@ export function FormCityState() {
 
     async function loadCities() {
       try {
-        const res = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState}/municipios`)
-        const data = await res.json()
-        setCities(data.map((city: any) => ({
-          label: city.nome,
-          value: city.id,
-        })))
+        const res = await queryCities(selectedState)
+        setCities(res)
       } catch (error) {
         console.error("Erro ao buscar cidades:", error)
         setCities([])
       }
     }
-
     loadCities()
   }, [selectedState])
     
