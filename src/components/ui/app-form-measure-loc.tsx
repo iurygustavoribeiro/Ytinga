@@ -52,7 +52,7 @@ const measure_types = [
 ]
 
 export function FormCityState() {
-  const [cities, setCities] = useState<{ label: string; value: number }[]>([])
+  const [cities, setCities] = useState<{ label: string; value: string }[]>([])
   const [states, setStates] = useState<{ label: string; value: string }[]>([])
   const [selectedState, setSelectedState] = useState<string>("")
     

@@ -14,10 +14,10 @@ export async function queryStates() {
   export async function queryCities(state: string) {
     try {
         const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/municipios`)
-        const data = await response.json() 
+        const data = await response.json()
         return data.map((city: any) => ({
           label: city.nome,
-          value: city.sigla,
+          value: String(city.id),
         }))
       } catch (error) {
         console.error("Erro ao buscar cidades:", error)
